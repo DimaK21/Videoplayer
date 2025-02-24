@@ -19,7 +19,6 @@ class VideoRepositoryImpl @Inject constructor(
 
     override suspend fun getVideos(): List<Video> {
         return try {
-            Log.d("VideoRepositoryImpl", "apiKey $apiKey")
             val videos = api
                 .getVideos(apiKey)
                 .apply { Log.d("VideoRepositoryImpl", this.hits.toString()) }
@@ -31,7 +30,11 @@ class VideoRepositoryImpl @Inject constructor(
         } catch (e: Exception) {
             Log.d("VideoRepositoryImpl", e.message.toString())
             Log.d("VideoRepositoryImpl", e.stackTraceToString())
-            dao.getAllVideos().map { it.toDomain() }
+            if (dao.getAllVideos().isNotEmpty()) {
+                dao.getAllVideos().map { it.toDomain() }
+            } else {
+                throw e
+            }
         }
     }
 }

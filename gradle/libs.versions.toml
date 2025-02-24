@@ -16,6 +16,7 @@ retrofit = "2.11.0"
 glide_version = "1.0.0-beta01"
 room_version = "2.6.1"
 exoplayer = "2.19.1"
+swiperefresh = "0.31.1-alpha"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -43,6 +44,7 @@ room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room_version" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room_version" }
 exoplayer = { group = "com.google.android.exoplayer", name = "exoplayer", version.ref = "exoplayer" }
+swiperefresh = { group = "com.google.accompanist", name = "accompanist-swiperefresh", version.ref = "swiperefresh" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

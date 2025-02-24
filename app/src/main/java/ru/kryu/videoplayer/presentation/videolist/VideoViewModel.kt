@@ -26,8 +26,12 @@ class VideoViewModel @Inject constructor(
     fun loadVideos() {
         _state.value = VideoListState.Loading
         viewModelScope.launch(Dispatchers.IO) {
-            val videos = repository.getVideos()
-            _state.value = VideoListState.Success(videos)
+            try {
+                val videos = repository.getVideos()
+                _state.value = VideoListState.Success(videos)
+            } catch (e: Exception) {
+                _state.value = VideoListState.Error(e)
+            }
         }
     }
 }
@@ -35,5 +39,5 @@ class VideoViewModel @Inject constructor(
 sealed class VideoListState {
     object Loading : VideoListState()
     data class Success(val videos: List<Video>) : VideoListState()
-    data class Error(val message: String) : VideoListState()
+    data class Error(val throwable: Throwable) : VideoListState()
 }

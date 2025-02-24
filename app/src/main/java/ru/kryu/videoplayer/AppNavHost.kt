@@ -22,7 +22,6 @@ fun AppNavHost(navController: NavHostController) {
         composable("player/{videoUrl}") { backStackEntry ->
             VideoPlayerScreen(
                 videoUrl = Uri.decode(backStackEntry.arguments?.getString("videoUrl") ?: ""),
-                navController
             )
         }
     }
