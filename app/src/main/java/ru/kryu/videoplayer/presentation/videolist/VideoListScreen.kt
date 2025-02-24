@@ -32,7 +32,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -41,6 +43,7 @@ import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import ru.kryu.videoplayer.R
 import ru.kryu.videoplayer.domain.model.Video
 
 @Composable
@@ -73,11 +76,17 @@ fun VideoListScreen(viewModel: VideoViewModel = hiltViewModel(), navController: 
                 val error = (state as VideoListState.Error).throwable
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Text("Ошибка загрузки: ${error.localizedMessage}", color = Color.Red)
+                        Text(
+                            stringResource(R.string.error_load, error.localizedMessage ?: ""),
+                            color = Color.Red,
+                            textAlign = TextAlign.Center,
+                        )
                         Spacer(modifier = Modifier.height(8.dp))
                         Button(onClick = { viewModel.loadVideos() }) {
-                            Text("Попробовать снова")
+                            Text(stringResource(R.string.try_again))
                         }
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(text = stringResource(R.string.vpn), fontSize = 8.sp)
                     }
                 }
             }
@@ -112,7 +121,11 @@ fun VideoItem(video: Video, onClick: () -> Unit) {
             Spacer(modifier = Modifier.width(8.dp))
             Column {
                 Text(video.title, fontSize = 16.sp, fontWeight = FontWeight.Bold, maxLines = 2)
-                Text("${video.duration} seconds", fontSize = 14.sp, color = Color.Gray)
+                Text(
+                    stringResource(R.string.seconds, video.duration),
+                    fontSize = 14.sp,
+                    color = Color.Gray
+                )
             }
         }
     }

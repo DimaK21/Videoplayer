@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Videoplayer</string>
+    <string name="seconds">%1$s seconds</string>
+    <string name="vpn">необходимо использовать VPN</string>
+    <string name="try_again">Попробовать снова</string>
+    <string name="error_load">Ошибка загрузки: %1$s</string>
 </resources>
