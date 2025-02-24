@@ -3,29 +3,35 @@ package ru.kryu.videoplayer.data.network
 import com.google.gson.annotations.SerializedName
 
 data class VideoDto(
-    @SerializedName("has_next")
-    val hasNext: Boolean?,
-    @SerializedName("next")
-    val next: String?,
-    @SerializedName("previous")
-    val previous: Any?,
-    @SerializedName("page")
-    val page: Int?,
-    @SerializedName("per_page")
-    val perPage: Int?,
-    @SerializedName("results")
-    val results: List<Result?>?
+    @SerializedName("hits")
+    val hits: List<Hit>
 ) {
-    data class Result(
+    data class Hit(
         @SerializedName("id")
-        val id: String,
-        @SerializedName("thumbnail_url")
-        val thumbnailUrl: String?,
-        @SerializedName("video_url")
-        val videoUrl: String?,
+        val id: Int,
+        @SerializedName("tags")
+        val tags: String,
         @SerializedName("duration")
         val duration: Int?,
-        @SerializedName("title")
-        val title: String?,
-    )
+        @SerializedName("videos")
+        val videos: Videos?,
+    ) {
+        data class Videos(
+            @SerializedName("medium")
+            val medium: Medium?,
+        ) {
+            data class Medium(
+                @SerializedName("url")
+                val url: String?,
+                @SerializedName("width")
+                val width: Int?,
+                @SerializedName("height")
+                val height: Int?,
+                @SerializedName("size")
+                val size: Int?,
+                @SerializedName("thumbnail")
+                val thumbnail: String?
+            )
+        }
+    }
 }

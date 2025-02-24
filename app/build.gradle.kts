@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -19,8 +21,12 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        val apiKey: String = project.findProperty("PIXABAY_API_KEY") as String? ?: ""
-        buildConfigField("String", "PIXABAY_API_KEY", "\"$apiKey\"")
+        val localProperties = Properties()
+        if (rootProject.file("local.properties").exists()) {
+            localProperties.load(rootProject.file("local.properties").inputStream())
+        }
+        val apiKey = localProperties.getProperty("API_KEY") ?: ""
+        buildConfigField("String", "API_KEY", "\"$apiKey\"")
     }
 
     buildTypes {

@@ -19,7 +19,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-    private const val BASE_URL = "https://rutube.ru/"
+    private const val BASE_URL = "https://pixabay.com/api/"
 
     @Provides
     @Singleton
@@ -35,7 +35,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context): VideoDatabase =
-        Room.databaseBuilder(context, VideoDatabase::class.java, "videos.db").build()
+        Room.databaseBuilder(context, VideoDatabase::class.java, "videos2.db").build()
 
     @Provides
     @Singleton
