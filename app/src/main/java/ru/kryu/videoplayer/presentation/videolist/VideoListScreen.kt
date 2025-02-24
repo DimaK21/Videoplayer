@@ -1,5 +1,6 @@
 package ru.kryu.videoplayer.presentation.videolist
 
+import android.net.Uri
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -34,7 +35,7 @@ fun VideoListScreen(viewModel: VideoViewModel = hiltViewModel(), navController: 
             val videos = (state as VideoListState.Success).videos
             LazyColumn {
                 items(videos) { video ->
-                    VideoItem(video) { navController.navigate("player/${video.videoUrl}") }
+                    VideoItem(video) { navController.navigate("player/${Uri.encode(video.videoUrl)}") }
                 }
             }
         }
@@ -46,10 +47,12 @@ fun VideoListScreen(viewModel: VideoViewModel = hiltViewModel(), navController: 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun VideoItem(video: Video, onClick: () -> Unit) {
-    Card(modifier = Modifier
-        .fillMaxWidth()
-        .clickable(onClick = onClick)
-        .padding(8.dp)) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onClick)
+            .padding(8.dp)
+    ) {
         Row {
             GlideImage(
                 model = video.thumbnailUrl,
