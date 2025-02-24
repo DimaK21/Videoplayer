@@ -13,7 +13,7 @@ hiltNavigationCompose = "1.2.0"
 hiltAndroid = "2.52"
 ksp = "2.0.0-1.0.21"
 retrofit = "2.11.0"
-glide_version = "5.0.0-rc01"
+glide_version = "1.0.0-beta01"
 room_version = "2.6.1"
 exoplayer = "2.19.1"
 
@@ -38,7 +38,7 @@ hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltA
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroid" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
-bumptech-glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide_version" }
+bumptech-glide = { group = "com.github.bumptech.glide", name = "compose", version.ref = "glide_version" }
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room_version" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room_version" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room_version" }
